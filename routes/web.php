@@ -20,3 +20,4 @@ Route::get('/', function () {
     Route::get('Login/login','login\LoginController@login');
     Route::post('Login/loginto','login\LoginController@loginto');
     Route::any('Index/index','login\IndexController@index');
+    Route::get('List/list','login\ListController@list');
