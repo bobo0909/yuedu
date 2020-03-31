@@ -26,16 +26,23 @@
     <div id="darkbannerwrap"></div>
 
     <form method="post" action='registerto' class="layui-form" >
+ 
         @csrf
-        <input name="name" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+        <input name="tel" placeholder="手机号码"  type="text" lay-verify="required" class="layui-input" >
+        <p style="color:red" class="p">{{$errors->first('tel')}}</p>
         <hr class="hr15">
         <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+        <p style="color:red" class="p">{{$errors->first('password')}}</p>
         <hr class="hr15">
         <input name="password2" lay-verify="required" placeholder="确认密码"  type="password" class="layui-input">
+        <p style="color:red" class="p">{{$errors->first('password2')}}</p>
         <hr class="hr15">
+        
+        <hr class="hr10">
         <input value="注册" lay-submit lay-filter="login" style="width:100%;" type="submit">
         <hr class="hr20" >
     </form>
 </div>
 </body>
 </html>
+ 
