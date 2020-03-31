@@ -32,20 +32,21 @@ class LoginController extends Controller
         return view('Login/login');
     }
     public function Loginto(){
-        $data=\request()->all();
-        $name=\request()->post("name");
-        //dd($name);
-        unset($data['_token']);
-        $res=User::where('name',$data['name'])->first();
-            if ($res){
-                if ($res['password']==md5($data['password'])){
-                    return view("/Index/index",['name'=>$name]);
-                }else{
-                    return redirect("/Login/login");
-                }
-            }else{
-                return redirect("/Login/login");
-            }
-
+     $data=\request()->all();
+        if ($data['name'] == ''){
+    echo '<script>alert("用户名不能为空");window.location.href="/Login/login";</script>';
+    }
+        if ($data['password'] == ''){
+    echo '<script>alert("密码不能为空");window.location.href="/Login/login";</script>';
+    }
+         $Info = User::where(['name'=>$data['name']])->first();
+        if ($Info == ""){
+        echo '<script>alert("用户名不存在");window.location.href="/Login/login";</script>';
+    }
+        if ($Info['password'] == md5($data['password'])){
+              echo '<script>alert("登录成功");window.location.href="/Index/index";</script>';
+        }else{
+    echo '<script>alert("密码错误");window.location.href="/Login/login";</script>';
+        }     
     }
 }
